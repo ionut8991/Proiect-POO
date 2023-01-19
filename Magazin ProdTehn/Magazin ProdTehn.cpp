@@ -91,6 +91,11 @@ public:
     {
         pret = x;
         return pret;
+       
+    }
+    inline void afisare_pret()
+    {
+        cout << "\nNoul pret al produsului este: " << pret << endl;
     }
 
 
@@ -132,7 +137,11 @@ public:
     inline int act_nrcom(int xcom)
     {
         nr_comenzi = xcom;
-        return nr_comenzi;
+        return nr_comenzi;        
+    }
+    inline void get_nrcom()
+    {
+        cout << "\nNoul numar de comenzi laptop-uri: " << nr_comenzi << endl;
     }
 };
 
@@ -179,6 +188,15 @@ public:
     MV_SistemeOffice(char*, char*, char*, float, char*, char*, char*, int);
     ~MV_SistemeOffice();
     void afisare();
+    inline int act_nrcom(int xcom)
+    {
+        nr_comenzi = xcom;
+        return nr_comenzi;
+    }
+    inline void get_nrcom()
+    {
+        cout << "\nNoul numar de comenzi Sisteme Office: " << nr_comenzi << endl;
+    }
 };
 
 MV_SistemeOffice::MV_SistemeOffice(char* TM, char* CAT, char* NP, float P, char* GPU, char* NF, char* CPU, int NC) :MV_ProdElec(TM, CAT, NP, P)
@@ -222,6 +240,15 @@ public:
     MV_TV(char*, char*, char*, float, char*, int, int, float);
     ~MV_TV();
     void afisare();
+    inline int act_nrcom(int xcom)
+    {
+        nr_comenzi = xcom;
+        return nr_comenzi;
+    }
+    inline void get_nrcom()
+    {
+        cout << "\nNoul numar de comenzi TV-uri: " << nr_comenzi << endl;
+    }
 };
 
 MV_TV::MV_TV(char* TM, char* CAT, char* NP, float P, char* NF, int R, int NC, float DE) :MV_ProdElec(TM, CAT, NP, P)
@@ -259,6 +286,15 @@ public:
     MV_Mobile(char*, char*, char*, float, char*,char*, int, int, float);
     ~MV_Mobile();
     void afisare();
+    inline int act_nrcom(int xcom)
+    {
+        nr_comenzi = xcom;
+        return nr_comenzi;
+    }
+    inline void get_nrcom()
+    {
+        cout << "\nNoul numar de comenzi smartphone-uri: " << nr_comenzi << endl;
+    }
 };
 
 MV_Mobile::MV_Mobile(char* TM, char* CAT, char* NP, float P,char*SO, char* NF, int DC, int NC, float DE) :MV_ProdElec(TM, CAT, NP, P)
@@ -300,6 +336,15 @@ public:
     MV_ComponentePC(char*, char*, char*, float, char*, char*, char*, int);
     ~MV_ComponentePC();
     void afisare();
+    inline int act_nrcom(int xcom)
+    {
+        nr_comenzi = xcom;
+        return nr_comenzi;
+    }
+    inline void get_nrcom()
+    {
+        cout << "\nNoul numar de comenzi Componente PC: " << nr_comenzi << endl;
+    }
 };
 
 MV_ComponentePC::MV_ComponentePC(char* TM, char* CAT, char* NP, float P, char* TP, char* NF, char* SP, int NC) :MV_ProdElec(TM, CAT, NP, P)
@@ -352,23 +397,43 @@ int main()
     //magazin laptop-uri
     MV_Laptop* laptop1 = new MV_Laptop((char*)"virtual", (char*)"Laptop-uri", (char*)"Dell Inspiration", (float)8999.99, (char*)"Windows", (char*)"Nvidia RTX 3080TI", (char*)"Dell", (char*)"Ryzen 9", (int)3);
     laptop1->afisare();
+    laptop1->actualizare_pret(6643);
+    laptop1->afisare_pret();
+    laptop1->act_nrcom(6);
+    laptop1->get_nrcom();
 
 
     //magazin sisteme office
     MV_SistemeOffice* soffice1 = new MV_SistemeOffice((char*)"virtual", (char*)"Sisteme Office", (char*)"Lenovo ThinkPad", (float)8999.99, (char*)"Nvidia RTX 4090TI", (char*)"Lenovo", (char*)"Ryzen 9", (int)2);
     soffice1->afisare();
+    soffice1->actualizare_pret(5434);
+    soffice1->afisare_pret();
+    soffice1->act_nrcom(6);
+    soffice1->get_nrcom();
 
 
     //magazin TV-uri
     MV_TV* tv1 = new MV_TV((char*)"virtual", (char*)"Televizoare", (char*)"LG G325253", (float)8999.99, (char*)"LG", (int)120, (int)5, (float)34.5);
     tv1->afisare();
+    tv1->actualizare_pret(5434);
+    tv1->afisare_pret();
+    tv1->act_nrcom(6);
+    tv1->get_nrcom();
 
     //magazin telefoane mobile
     MV_Mobile* mobile1 = new MV_Mobile((char*)"virtual", (char*)"Smartphone-uri", (char*)"LG G325253", (float)8999.99, (char*)"Android", (char*)"Google", (int)48, (int)73, (float)6.7);
     mobile1->afisare();
+    mobile1->actualizare_pret(5434);
+    mobile1->afisare_pret();
+    mobile1->act_nrcom(6);
+    mobile1->get_nrcom();
 
     //magazin Componente PC
     MV_ComponentePC* comp1 = new MV_ComponentePC((char*)"virtual", (char*)"Componente PC", (char*)"i9 134000", (float)8999.99, (char*)"Procesor", (char*)"Intel", (char*)"3.5GHZ, 3MB Cache", (int)6);
     comp1->afisare();
+    comp1->actualizare_pret(5434);
+    comp1->afisare_pret();
+    comp1->act_nrcom(6);
+    comp1->get_nrcom();
 }
 
