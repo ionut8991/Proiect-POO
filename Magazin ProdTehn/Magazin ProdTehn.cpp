@@ -129,6 +129,11 @@ public:
     MV_Laptop(char*, char*, char*, float, char*, char*, char*, char*, int);
     ~MV_Laptop();
     void afisare();
+    inline int act_nrcom(int xcom)
+    {
+        nr_comenzi = xcom;
+        return nr_comenzi;
+    }
 };
 
 MV_Laptop::MV_Laptop(char* TM, char* CAT, char* NP, float P, char* SO, char* GPU, char* NF, char* CPU, int NC):MV_ProdElec(TM, CAT, NP, P)
@@ -241,6 +246,92 @@ void MV_TV::afisare()
     cout << "Dimensiune ecran: " << dim_ecran << endl;
     cout << "Numar de comenzi: " << nr_comenzi << endl;
 }
+
+
+//Magazin Telefoane Mobile
+class MV_Mobile :public MV_ProdElec
+{
+private:
+    char*so, * nume_firma;
+    int dim_camera, nr_comenzi;
+    float dim_ecran;
+public:
+    MV_Mobile(char*, char*, char*, float, char*,char*, int, int, float);
+    ~MV_Mobile();
+    void afisare();
+};
+
+MV_Mobile::MV_Mobile(char* TM, char* CAT, char* NP, float P,char*SO, char* NF, int DC, int NC, float DE) :MV_ProdElec(TM, CAT, NP, P)
+{
+    so = new char[strlen(SO) + 1];
+    strcpy(so, SO);
+    nume_firma = new char[strlen(NF) + 1];
+    strcpy(nume_firma, NF);
+    dim_camera = DC;
+    nr_comenzi = NC;
+    dim_ecran = DE;
+}
+
+MV_Mobile ::~MV_Mobile()
+{
+    delete nume_firma;
+    delete so;
+}
+
+void MV_Mobile::afisare()
+{
+    MV_ProdElec::afisare();
+    cout << "Numele firmei producatoare:" << nume_firma << endl;
+    cout << "Sistemul de operare al telefonului este:" << so << endl;
+    cout << "Dimensiune camera: " << dim_camera << " MB" << endl;
+    cout << "Dimensiune ecran: " << dim_ecran << endl;
+    cout << "Numar de comenzi: " << nr_comenzi << endl;
+}
+
+
+
+//Magazin Componente PC
+class MV_ComponentePC :public MV_ProdElec
+{
+private:
+    char* tip_produs, * nume_firma, * specificatii;
+    int nr_comenzi;
+public:
+    MV_ComponentePC(char*, char*, char*, float, char*, char*, char*, int);
+    ~MV_ComponentePC();
+    void afisare();
+};
+
+MV_ComponentePC::MV_ComponentePC(char* TM, char* CAT, char* NP, float P, char* TP, char* NF, char* SP, int NC) :MV_ProdElec(TM, CAT, NP, P)
+{
+
+    tip_produs = new char[strlen(TP) + 1];
+    strcpy(tip_produs, TP);
+    nume_firma = new char[strlen(NF) + 1];
+    strcpy(nume_firma, NF);
+    specificatii = new char[strlen(SP) + 1];
+    strcpy(specificatii, SP);
+    nr_comenzi = NC;
+}
+
+MV_ComponentePC::~MV_ComponentePC()
+{
+
+    delete tip_produs;
+    delete nume_firma;
+    delete specificatii;
+}
+
+void MV_ComponentePC::afisare()
+{
+    MV_ProdElec::afisare();
+    cout << "Numele firmei producatoare:" << nume_firma << endl;
+    cout << "Tip produs: " << tip_produs << endl;
+    cout << "Specificatii produs: " << specificatii << endl;
+    cout << "Numar de comenzi: " << nr_comenzi << endl;
+}
+
+
 int main()
 {
     //administrator
@@ -269,8 +360,15 @@ int main()
 
 
     //magazin TV-uri
-    MV_TV* tv1 = new MV_TV((char*)"virtual", (char*)"Laptop-uri", (char*)"Dell Inspiration", (float)8999.99, (char*)"LG", (int)120, (int)5, (float)34.5);
+    MV_TV* tv1 = new MV_TV((char*)"virtual", (char*)"Televizoare", (char*)"LG G325253", (float)8999.99, (char*)"LG", (int)120, (int)5, (float)34.5);
     tv1->afisare();
 
+    //magazin telefoane mobile
+    MV_Mobile* mobile1 = new MV_Mobile((char*)"virtual", (char*)"Smartphone-uri", (char*)"LG G325253", (float)8999.99, (char*)"Android", (char*)"Google", (int)48, (int)73, (float)6.7);
+    mobile1->afisare();
+
+    //magazin Componente PC
+    MV_ComponentePC* comp1 = new MV_ComponentePC((char*)"virtual", (char*)"Componente PC", (char*)"i9 134000", (float)8999.99, (char*)"Procesor", (char*)"Intel", (char*)"3.5GHZ, 3MB Cache", (int)6);
+    comp1->afisare();
 }
 
