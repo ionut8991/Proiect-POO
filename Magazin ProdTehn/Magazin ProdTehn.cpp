@@ -98,7 +98,7 @@ public:
         cout << "\nNoul pret al produsului este: " << pret << endl;
     }
 
-
+    
 };
 
 MV_ProdElec::MV_ProdElec(char* TM, char* CAT, char* NP, float P):Magazin_virtual(TM)
