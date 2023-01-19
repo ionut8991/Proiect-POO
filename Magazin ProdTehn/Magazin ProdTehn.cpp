@@ -5,6 +5,7 @@ using namespace std;
 //Administrator
 class Administrator
 {
+    friend class MV_ProdElec;
 private:
     char* nume, * email;
     int profile_id;
@@ -35,9 +36,15 @@ void Administrator::afisare()
     cout << "Date contact administrator: " << email << endl;
     cout << "Numar unic de identificare administrator: " << profile_id << endl;
 }
-
-
-
+/*
+void Administrator::confirmare_comenzi()
+{
+    if (MV_ProdElec::totalcomenzi > 0)
+        cout << "Confirmare livrare comenzi";
+    else
+        cout << " Nu sunt comenzi de confirmat";
+}
+*/
 
 //Magazin
 class Magazin
@@ -92,6 +99,7 @@ istream& operator>>(istream& in, Magazin_virtual& mv)
 //Magazin produse electronice
 class MV_ProdElec:public Magazin_virtual
 {
+    friend class Administrator;
 protected:
     char* categ, * nume_prod;
     float pret;
