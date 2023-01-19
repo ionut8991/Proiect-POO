@@ -143,6 +143,7 @@ public:
     {
         cout << "\nNoul numar de comenzi laptop-uri: " << nr_comenzi << endl;
     }
+    
 };
 
 MV_Laptop::MV_Laptop(char* TM, char* CAT, char* NP, float P, char* SO, char* GPU, char* NF, char* CPU, int NC):MV_ProdElec(TM, CAT, NP, P)
