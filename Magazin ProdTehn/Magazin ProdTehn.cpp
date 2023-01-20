@@ -5,7 +5,6 @@ using namespace std;
 //Administrator
 class Administrator
 {
-    friend class MV_ProdElec;
 private:
    
     char* nume, * email;
@@ -45,6 +44,25 @@ void Administrator::afisare()
     cout << "Numar unic de identificare administrator: " << profile_id << endl;
 }
 
+/*
+istream& operator>>(istream& in, Administrator& ax)
+{
+    char* tempnume =0, * tempemail =0;
+    cout << "\nIntroduceti datele noului administrator: " << endl;
+    cout << "Nume administrator: " << endl;
+    in >> tempnume;
+    ax.nume = new char[strlen(tempnume) + 1];
+    strcpy(ax.nume, tempnume);
+    cout << "Adresa de email administrator: " << endl;
+    in >> tempemail;
+    ax.email = new char[strlen(tempemail) + 1];
+    strcpy(ax.email, tempemail);
+    cout << "ID unic: " << endl;
+    in >> ax.profile_id;
+    return in;
+    
+}*/
+
 istream& operator>>(istream& in, Administrator& ax)
 {
     cout << "\nIntroduceti datele noului administrator: " << endl;
@@ -56,7 +74,6 @@ istream& operator>>(istream& in, Administrator& ax)
     in >> ax.profile_id;
     return in;
 }
-
 
 //Magazin
 class Magazin
@@ -106,7 +123,6 @@ void Magazin_virtual::afisare()
 //Magazin produse electronice
 class MV_ProdElec:public Magazin_virtual
 {
-    friend class Administrator;
 protected:
     char* categ, * nume_prod;
     float pret;
@@ -200,7 +216,9 @@ private:
 public:
     MV_Laptop(char*, char*, char*, float, int, int, char*, char*, char*, char*);
     ~MV_Laptop();
-    void afisare();   
+    void afisare();
+    void verificare_stoc();
+    int actualizare_stoc(int);
     
 };
 
@@ -235,7 +253,24 @@ void MV_Laptop::afisare()
     cout << "Numar de comenzi: " << nr_comenzi << endl;
 }
 
+void MV_Laptop::verificare_stoc()
+{
+    if (this->stock > 0)
+    {
+        cout << "Stock-ul acestui produs este suficient!" << endl;
+    }
+    else
+    {
+        cout << "Nu mai sunt produse in stock, va rugam asteptati!" << endl;
+    }
+}
 
+int MV_Laptop::actualizare_stoc(int st)
+{
+    this->stock = st;
+    cout << "\nNoul numar de produse in stock este: " << this->stock << endl;
+    return stock;
+}
 
 //Magazin virtual sisteme office
 class MV_SistemeOffice :public MV_ProdElec
@@ -247,6 +282,8 @@ public:
     MV_SistemeOffice(char*, char*, char*, float, int, int, char*, char*, char*);
     ~MV_SistemeOffice();
     void afisare();
+    void verificare_stoc();
+    int actualizare_stoc(int);
    
 };
 
@@ -279,6 +316,24 @@ void MV_SistemeOffice::afisare()
     cout << "Numar de comenzi: " << nr_comenzi << endl;
 }
 
+void MV_SistemeOffice::verificare_stoc()
+{
+    if (this->stock > 0)
+    {
+        cout << "Stock-ul acestui produs este suficient!" << endl;
+    }
+    else
+    {
+        cout << "Nu mai sunt produse in stock, va rugam asteptati!" << endl;
+    }
+}
+
+int MV_SistemeOffice::actualizare_stoc(int st)
+{
+    this->stock = st;
+    cout << "\nNoul numar de produse in stock este: " << this->stock << endl;
+    return stock;
+}
 
 //Magazin TV
 class MV_TV :public MV_ProdElec
@@ -291,6 +346,8 @@ public:
     MV_TV(char*, char*, char*, float, int, int, char*, int, float);
     ~MV_TV();
     void afisare();
+    void verificare_stoc();
+    int actualizare_stoc(int);
 };
 
 MV_TV::MV_TV(char* TM, char* CAT, char* NP, float P, int NC, int ST, char* NF, int R, float DE) :MV_ProdElec(TM, CAT, NP, P, NC, ST)
@@ -315,6 +372,25 @@ void MV_TV::afisare()
     cout << "Numar de comenzi: " << nr_comenzi << endl;
 }
 
+void MV_TV::verificare_stoc()
+{
+    if (this->stock > 0)
+    {
+        cout << "Stock-ul acestui produs este suficient!" << endl;
+    }
+    else
+    {
+        cout << "Nu mai sunt produse in stock, va rugam asteptati!" << endl;
+    }
+}
+
+int MV_TV::actualizare_stoc(int st)
+{
+    this->stock = st;
+    cout << "\nNoul numar de produse in stock este: " << this->stock << endl;
+    return stock;
+}
+
 
 //Magazin Telefoane Mobile
 class MV_Mobile :public MV_ProdElec
@@ -327,6 +403,8 @@ public:
     MV_Mobile(char*, char*, char*, float, int, int, char*,char*, int, float);
     ~MV_Mobile();
     void afisare();
+    void verificare_stoc();
+    int actualizare_stoc(int);
 };
 
 MV_Mobile::MV_Mobile(char* TM, char* CAT, char* NP, float P, int NC, int ST, char*SO, char* NF, int DC, float DE) :MV_ProdElec(TM, CAT, NP, P, NC, ST)
@@ -355,7 +433,24 @@ void MV_Mobile::afisare()
     cout << "Numar de comenzi: " << nr_comenzi << endl;
 }
 
+void MV_Mobile::verificare_stoc()
+{
+    if (this->stock > 0)
+    {
+        cout << "Stock-ul acestui produs este suficient!" << endl;
+    }
+    else
+    {
+        cout << "Nu mai sunt produse in stock, va rugam asteptati!" << endl;
+    }
+}
 
+int MV_Mobile::actualizare_stoc(int st)
+{
+    this->stock = st;
+    cout << "\nNoul numar de produse in stock este: " << this->stock << endl;
+    return stock;
+}
 
 //Magazin Componente PC
 class MV_ComponentePC :public MV_ProdElec
@@ -366,6 +461,8 @@ public:
     MV_ComponentePC(char*, char*, char*, float, int,int, char*, char*, char*);
     ~MV_ComponentePC();
     void afisare();
+    void verificare_stoc();
+    int actualizare_stoc(int);
 
 };
 
@@ -397,6 +494,24 @@ void MV_ComponentePC::afisare()
     cout << "Numar de comenzi: " << nr_comenzi << endl;
 }
 
+void MV_ComponentePC::verificare_stoc()
+{
+    if (this->stock > 0)
+    {
+        cout << "Stock-ul acestui produs este suficient!" << endl;
+    }
+    else
+    {
+        cout << "Nu mai sunt produse in stock, va rugam asteptati!" << endl;
+    }
+}
+
+int MV_ComponentePC::actualizare_stoc(int st)
+{
+    this->stock = st;
+    cout << "\nNoul numar de produse in stock este: " << this->stock << endl;
+    return stock;
+}
 
 int main()
 {
@@ -425,6 +540,9 @@ int main()
     laptop1->afisare_pret();
     laptop1->act_nrcom(4);
     laptop1->get_nrcom();
+    laptop1->verificare_stoc();
+    laptop1->actualizare_stoc(0);
+    laptop1->verificare_stoc();
 
 
     //magazin sisteme office
