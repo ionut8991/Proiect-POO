@@ -65,7 +65,7 @@ public:
     Magazin_virtual(char*);
     ~Magazin_virtual();
     void afisare();
-    friend istream& operator>>(istream&, Magazin_virtual&);
+    friend istream& operator>>(istream& in, Magazin_virtual& mv);
 };
 
 Magazin_virtual::Magazin_virtual()
@@ -127,15 +127,16 @@ public:
     }
     void get_nrcom()
     {
-        cout << "\nNoul numar de comenzi laptop-uri: " << nr_comenzi << endl;
+        cout << "\nNoul numar de comenzi: " << nr_comenzi << endl;
     }
 
     int totalcomenzi(MV_ProdElec* vecprodus[], int marime);
 
     int totalstock()
     {
-        return nr_comenzi;
+        return stock;
     }
+
     MV_ProdElec operator + (const MV_ProdElec& other)
     {
         return MV_ProdElec(tip_magazin, categ, nume_prod, pret, nr_comenzi, stock + other.stock);
@@ -456,10 +457,11 @@ int main()
     int marime = sizeof(vecprodus) / sizeof(vecprodus[0]);
     cout << "Nr total comenzi" << MV_ProdElec::totalcomenzi(vecprodus, marime) << endl;
     */
-
-    //Magazin_virtual mv1;
-   // cin >> mv1;
-   // mv1.afisare();
+    /*
+    Magazin_virtual mv1;
+    cin >> mv1;
+    mv1.afisare();
+    */
 
     MV_ProdElec* total = new MV_ProdElec(*laptop1 + *soffice1 + *comp1 + *mobile1);
     cout << "\nTotal stock produse magazin: " << total->totalstock() << endl;
