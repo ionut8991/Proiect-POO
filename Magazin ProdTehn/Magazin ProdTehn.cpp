@@ -7,15 +7,23 @@ class Administrator
 {
     friend class MV_ProdElec;
 private:
+   
     char* nume, * email;
     int profile_id;
 public:
+    Administrator();
     Administrator(char*, char*, int);
     ~Administrator();
     void afisare();
-    void confirmare_comenzi();
+    friend istream& operator>>(istream&, Administrator&);
 };
 
+Administrator::Administrator()
+{
+    nume = 0;
+    email = 0;
+    profile_id = 0;
+}
 Administrator::Administrator(char* N, char* EM, int ID)
 {
     nume = new char[strlen(N) + 1];
@@ -36,15 +44,19 @@ void Administrator::afisare()
     cout << "Date contact administrator: " << email << endl;
     cout << "Numar unic de identificare administrator: " << profile_id << endl;
 }
-/*
-void Administrator::confirmare_comenzi()
+
+istream& operator>>(istream& in, Administrator& ax)
 {
-    if (MV_ProdElec::totalcomenzi > 0)
-        cout << "Confirmare livrare comenzi";
-    else
-        cout << " Nu sunt comenzi de confirmat";
+    cout << "\nIntroduceti datele noului administrator: " << endl;
+    cout << "Nume administrator: " << endl;
+    in >> ax.nume;
+    cout << "Adresa de email administrator: " << endl;
+    in >> ax.email;
+    cout << "ID unic: " << endl;
+    in >> ax.profile_id;
+    return in;
 }
-*/
+
 
 //Magazin
 class Magazin
@@ -65,7 +77,7 @@ public:
     Magazin_virtual(char*);
     ~Magazin_virtual();
     void afisare();
-    friend istream& operator>>(istream& in, Magazin_virtual& mv);
+    
 };
 
 Magazin_virtual::Magazin_virtual()
@@ -89,12 +101,7 @@ void Magazin_virtual::afisare()
     cout << "\nTipul magazinului este: " << tip_magazin;
 }
 
-istream& operator>>(istream& in, Magazin_virtual& mv)
-{
-    cout << "Tip magazin:";
-    in >> mv.tip_magazin;
-    return in;
-}
+
 
 //Magazin produse electronice
 class MV_ProdElec:public Magazin_virtual
@@ -137,6 +144,7 @@ public:
         return stock;
     }
 
+    //total stock produse;
     MV_ProdElec operator + (const MV_ProdElec& other)
     {
         return MV_ProdElec(tip_magazin, categ, nume_prod, pret, nr_comenzi, stock + other.stock);
@@ -172,6 +180,7 @@ void MV_ProdElec::afisare()
     cout << "Total produse in stoc: " << stock << endl;
 }
 
+//total numar comenzi;
 int MV_ProdElec::totalcomenzi(MV_ProdElec* vecprodus[], int marime)
 {
     int total = 0;
@@ -191,8 +200,7 @@ private:
 public:
     MV_Laptop(char*, char*, char*, float, int, int, char*, char*, char*, char*);
     ~MV_Laptop();
-    void afisare();
-   
+    void afisare();   
     
 };
 
@@ -415,7 +423,7 @@ int main()
     laptop1->afisare();
     laptop1->actualizare_pret(6643);
     laptop1->afisare_pret();
-    laptop1->act_nrcom(6);
+    laptop1->act_nrcom(4);
     laptop1->get_nrcom();
 
 
@@ -424,7 +432,7 @@ int main()
     soffice1->afisare();
     soffice1->actualizare_pret(5434);
     soffice1->afisare_pret();
-    soffice1->act_nrcom(6);
+    soffice1->act_nrcom(9);
     soffice1->get_nrcom();
 
 
@@ -433,7 +441,7 @@ int main()
     tv1->afisare();
     tv1->actualizare_pret(5434);
     tv1->afisare_pret();
-    tv1->act_nrcom(6);
+    tv1->act_nrcom(53);
     tv1->get_nrcom();
 
     //magazin telefoane mobile
@@ -441,7 +449,7 @@ int main()
     mobile1->afisare();
     mobile1->actualizare_pret(5434);
     mobile1->afisare_pret();
-    mobile1->act_nrcom(6);
+    mobile1->act_nrcom(625);
     mobile1->get_nrcom();
 
     //magazin Componente PC
@@ -449,23 +457,21 @@ int main()
     comp1->afisare();
     comp1->actualizare_pret(5434);
     comp1->afisare_pret();
-    comp1->act_nrcom(6);
+    comp1->act_nrcom(34);
     comp1->get_nrcom();
     
-    /*
-    MV_ProdElec* vecprodus[] = { *laptop1, *soffice1, *tv1, *mobile1, *comp1 };
+    //verificare total nr de comenzi
+    MV_ProdElec* vecprodus[] = { laptop1, soffice1, tv1, mobile1, comp1 };
     int marime = sizeof(vecprodus) / sizeof(vecprodus[0]);
-    cout << "Nr total comenzi" << MV_ProdElec::totalcomenzi(vecprodus, marime) << endl;
-    */
-    /*
-    Magazin_virtual mv1;
-    cin >> mv1;
-    mv1.afisare();
-    */
-
+    cout << "\nNr total comenzi: " << MVprod1->totalcomenzi(vecprodus, marime) << endl;
+    
+    //verificare total stock produse din magazine
     MV_ProdElec* total = new MV_ProdElec(*laptop1 + *soffice1 + *comp1 + *mobile1);
     cout << "\nTotal stock produse magazin: " << total->totalstock() << endl;
-   
-    
+
+
+    //adaugare administrator nou;
+    Administrator admin2;
+    cin >> admin2;
 }
 
