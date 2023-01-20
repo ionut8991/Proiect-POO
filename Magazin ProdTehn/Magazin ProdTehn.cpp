@@ -103,9 +103,10 @@ class MV_ProdElec:public Magazin_virtual
 protected:
     char* categ, * nume_prod;
     float pret;
-    int nr_comenzi;
+    int nr_comenzi, stock;
 public:
-    MV_ProdElec(char*, char*, char*, float, int);
+    MV_ProdElec();
+    MV_ProdElec(char*, char*, char*, float, int, int);
     ~MV_ProdElec();
     void afisare();
     inline float actualizare_pret(float x)
@@ -130,9 +131,21 @@ public:
     }
 
     int totalcomenzi(MV_ProdElec* vecprodus[], int marime);
+
+    int totalstock()
+    {
+        return nr_comenzi;
+    }
+    MV_ProdElec operator + (const MV_ProdElec& other)
+    {
+        return MV_ProdElec(tip_magazin, categ, nume_prod, pret, nr_comenzi, stock + other.stock);
+    }
 };
 
-MV_ProdElec::MV_ProdElec(char* TM, char* CAT, char* NP, float P, int NC):Magazin_virtual(TM)
+
+
+
+MV_ProdElec::MV_ProdElec(char* TM, char* CAT, char* NP, float P, int NC, int ST):Magazin_virtual(TM)
 {
     categ = new char[strlen(CAT) + 1];
     strcpy(categ, CAT);
@@ -140,6 +153,7 @@ MV_ProdElec::MV_ProdElec(char* TM, char* CAT, char* NP, float P, int NC):Magazin
     strcpy(nume_prod, NP);
     pret = P;
     nr_comenzi = NC;
+    stock = ST;
 
 }
 
@@ -154,6 +168,7 @@ void MV_ProdElec::afisare()
     cout << "\nCategoria produsului este: " << categ << endl;
     cout << "Numele produsul este: " << nume_prod << endl;
     cout << "Pretul produsul este: " << pret << endl;
+    cout << "Total produse in stoc: " << stock << endl;
 }
 
 int MV_ProdElec::totalcomenzi(MV_ProdElec* vecprodus[], int marime)
@@ -173,14 +188,14 @@ private:
     char* so, * gpu, * nume_firma, * cpu;
     
 public:
-    MV_Laptop(char*, char*, char*, float, int, char*, char*, char*, char*);
+    MV_Laptop(char*, char*, char*, float, int, int, char*, char*, char*, char*);
     ~MV_Laptop();
     void afisare();
    
     
 };
 
-MV_Laptop::MV_Laptop(char* TM, char* CAT, char* NP, float P, int NC, char* SO, char* GPU, char* NF, char* CPU):MV_ProdElec(TM, CAT, NP, P, NC)
+MV_Laptop::MV_Laptop(char* TM, char* CAT, char* NP, float P, int NC, int ST, char* SO, char* GPU, char* NF, char* CPU):MV_ProdElec(TM, CAT, NP, P, NC, ST)
 {
     so = new char[strlen(SO) + 1];
     strcpy(so, SO);
@@ -220,13 +235,13 @@ private:
     char * gpu, * nume_firma, * cpu;
     
 public:
-    MV_SistemeOffice(char*, char*, char*, float, int, char*, char*, char*);
+    MV_SistemeOffice(char*, char*, char*, float, int, int, char*, char*, char*);
     ~MV_SistemeOffice();
     void afisare();
    
 };
 
-MV_SistemeOffice::MV_SistemeOffice(char* TM, char* CAT, char* NP, float P, int NC, char* GPU, char* NF, char* CPU) :MV_ProdElec(TM, CAT, NP, P, NC)
+MV_SistemeOffice::MV_SistemeOffice(char* TM, char* CAT, char* NP, float P, int NC, int ST, char* GPU, char* NF, char* CPU) :MV_ProdElec(TM, CAT, NP, P, NC, ST)
 {
     
     gpu = new char[strlen(GPU) + 1];
@@ -264,12 +279,12 @@ private:
     int refresh_rate;
     float dim_ecran;
 public:
-    MV_TV(char*, char*, char*, float, int, char*, int, float);
+    MV_TV(char*, char*, char*, float, int, int, char*, int, float);
     ~MV_TV();
     void afisare();
 };
 
-MV_TV::MV_TV(char* TM, char* CAT, char* NP, float P, int NC, char* NF, int R, float DE) :MV_ProdElec(TM, CAT, NP, P, NC)
+MV_TV::MV_TV(char* TM, char* CAT, char* NP, float P, int NC, int ST, char* NF, int R, float DE) :MV_ProdElec(TM, CAT, NP, P, NC, ST)
 {
     nume_firma = new char[strlen(NF) + 1];
     strcpy(nume_firma, NF); 
@@ -300,12 +315,12 @@ private:
     int dim_camera;
     float dim_ecran;
 public:
-    MV_Mobile(char*, char*, char*, float, int, char*,char*, int, float);
+    MV_Mobile(char*, char*, char*, float, int, int, char*,char*, int, float);
     ~MV_Mobile();
     void afisare();
 };
 
-MV_Mobile::MV_Mobile(char* TM, char* CAT, char* NP, float P, int NC, char*SO, char* NF, int DC, float DE) :MV_ProdElec(TM, CAT, NP, P,NC)
+MV_Mobile::MV_Mobile(char* TM, char* CAT, char* NP, float P, int NC, int ST, char*SO, char* NF, int DC, float DE) :MV_ProdElec(TM, CAT, NP, P, NC, ST)
 {
     so = new char[strlen(SO) + 1];
     strcpy(so, SO);
@@ -339,13 +354,13 @@ class MV_ComponentePC :public MV_ProdElec
 private:
     char* tip_produs, * nume_firma, * specificatii;
 public:
-    MV_ComponentePC(char*, char*, char*, float, int, char*, char*, char*);
+    MV_ComponentePC(char*, char*, char*, float, int,int, char*, char*, char*);
     ~MV_ComponentePC();
     void afisare();
 
 };
 
-MV_ComponentePC::MV_ComponentePC(char* TM, char* CAT, char* NP, float P, int NC, char* TP, char* NF, char* SP) :MV_ProdElec(TM, CAT, NP, P, NC)
+MV_ComponentePC::MV_ComponentePC(char* TM, char* CAT, char* NP, float P, int NC, int ST, char* TP, char* NF, char* SP) :MV_ProdElec(TM, CAT, NP, P, NC, ST)
 {
 
     tip_produs = new char[strlen(TP) + 1];
@@ -388,14 +403,14 @@ int main()
 
 
     //magazin produse electronice
-    MV_ProdElec* MVprod1 = new MV_ProdElec((char*) "virtual", (char*)"Categorie", (char*)"Nume produs", (float)0, (int)0);
+    MV_ProdElec* MVprod1 = new MV_ProdElec((char*) "virtual", (char*)"Categorie", (char*)"Nume produs", (float)0, (int)0, (int)0);
     MVprod1->afisare();
     
 
 
 
     //magazin laptop-uri
-    MV_Laptop* laptop1 = new MV_Laptop((char*)"virtual", (char*)"Laptop-uri", (char*)"Dell Inspiration", (float)8999.99, (int)3, (char*)"Windows", (char*)"Nvidia RTX 3080TI", (char*)"Dell", (char*)"Ryzen 9");
+    MV_Laptop* laptop1 = new MV_Laptop((char*)"virtual", (char*)"Laptop-uri", (char*)"Dell Inspiration", (float)8999.99, (int)3, (int)100, (char*)"Windows", (char*)"Nvidia RTX 3080TI", (char*)"Dell", (char*)"Ryzen 9");
     laptop1->afisare();
     laptop1->actualizare_pret(6643);
     laptop1->afisare_pret();
@@ -404,7 +419,7 @@ int main()
 
 
     //magazin sisteme office
-    MV_SistemeOffice* soffice1 = new MV_SistemeOffice((char*)"virtual", (char*)"Sisteme Office", (char*)"Lenovo ThinkPad", (float)8999.99, (int)2, (char*)"Nvidia RTX 4090TI", (char*)"Lenovo", (char*)"Ryzen 9");
+    MV_SistemeOffice* soffice1 = new MV_SistemeOffice((char*)"virtual", (char*)"Sisteme Office", (char*)"Lenovo ThinkPad", (float)8999.99, (int)2, (int)50, (char*)"Nvidia RTX 4090TI", (char*)"Lenovo", (char*)"Ryzen 9");
     soffice1->afisare();
     soffice1->actualizare_pret(5434);
     soffice1->afisare_pret();
@@ -413,7 +428,7 @@ int main()
 
 
     //magazin TV-uri
-    MV_TV* tv1 = new MV_TV((char*)"virtual", (char*)"Televizoare", (char*)"LG G325253", (float)8999.99, (int)5, (char*)"LG", (int)120,  (float)34.5);
+    MV_TV* tv1 = new MV_TV((char*)"virtual", (char*)"Televizoare", (char*)"LG G325253", (float)8999.99, (int)5, (int)40, (char*)"LG", (int)120,  (float)34.5);
     tv1->afisare();
     tv1->actualizare_pret(5434);
     tv1->afisare_pret();
@@ -421,7 +436,7 @@ int main()
     tv1->get_nrcom();
 
     //magazin telefoane mobile
-    MV_Mobile* mobile1 = new MV_Mobile((char*)"virtual", (char*)"Smartphone-uri", (char*)"LG G325253", (float)8999.99, (int)73, (char*)"Android", (char*)"Google", (int)48,  (float)6.7);
+    MV_Mobile* mobile1 = new MV_Mobile((char*)"virtual", (char*)"Smartphone-uri", (char*)"LG G325253", (float)8999.99, (int)73, (int)130, (char*)"Android", (char*)"Google", (int)48,  (float)6.7);
     mobile1->afisare();
     mobile1->actualizare_pret(5434);
     mobile1->afisare_pret();
@@ -429,14 +444,15 @@ int main()
     mobile1->get_nrcom();
 
     //magazin Componente PC
-    MV_ComponentePC* comp1 = new MV_ComponentePC((char*)"virtual", (char*)"Componente PC", (char*)"i9 134000", (float)8999.99, (int)6, (char*)"Procesor", (char*)"Intel", (char*)"3.5GHZ, 3MB Cache");
+    MV_ComponentePC* comp1 = new MV_ComponentePC((char*)"virtual", (char*)"Componente PC", (char*)"i9 134000", (float)8999.99, (int)6, (int)80, (char*)"Procesor", (char*)"Intel", (char*)"3.5GHZ, 3MB Cache");
     comp1->afisare();
     comp1->actualizare_pret(5434);
     comp1->afisare_pret();
     comp1->act_nrcom(6);
     comp1->get_nrcom();
+    
     /*
-    MV_ProdElec* vecprodus[] = { &laptop1, &soffice1, &tv1, &mobile1, &comp1 };
+    MV_ProdElec* vecprodus[] = { *laptop1, *soffice1, *tv1, *mobile1, *comp1 };
     int marime = sizeof(vecprodus) / sizeof(vecprodus[0]);
     cout << "Nr total comenzi" << MV_ProdElec::totalcomenzi(vecprodus, marime) << endl;
     */
@@ -444,5 +460,9 @@ int main()
     Magazin_virtual mv1;
     cin >> mv1;
     mv1.afisare();
+
+    MV_ProdElec* total = new MV_ProdElec(*laptop1 + *soffice1 + comp1);
+   
+    
 }
 
