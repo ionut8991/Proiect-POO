@@ -457,11 +457,12 @@ int main()
     cout << "Nr total comenzi" << MV_ProdElec::totalcomenzi(vecprodus, marime) << endl;
     */
 
-    Magazin_virtual mv1;
-    cin >> mv1;
-    mv1.afisare();
+    //Magazin_virtual mv1;
+   // cin >> mv1;
+   // mv1.afisare();
 
-    MV_ProdElec* total = new MV_ProdElec(*laptop1 + *soffice1 + comp1);
+    MV_ProdElec* total = new MV_ProdElec(*laptop1 + *soffice1 + *comp1 + *mobile1);
+    cout << "\nTotal stock produse magazin: " << total->totalstock() << endl;
    
     
 }
