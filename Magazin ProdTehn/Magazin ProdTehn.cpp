@@ -7,34 +7,33 @@ class Administrator
 {
 private:
    
-    char* nume, * email;
+    char nume[50], email[50];
     int profile_id;
 public:
     Administrator();
     Administrator(char*, char*, int);
     ~Administrator();
     void afisare();
-    friend istream& operator>>(istream&, Administrator&);
+    friend istream& operator>>(istream&in, Administrator&);
 };
 
 Administrator::Administrator()
 {
-    nume = 0;
-    email = 0;
+    strcpy(nume, " ");
+    strcpy(email, " ");
     profile_id = 0;
 }
 Administrator::Administrator(char* N, char* EM, int ID)
 {
-    nume = new char[strlen(N) + 1];
+    
     strcpy(nume, N);
-    email = new char[strlen(EM) + 1];
+    
     strcpy(email, EM);
     profile_id = ID;
 }
 Administrator::~Administrator()
 {
-    delete nume;
-    delete email;
+
 }
 
 void Administrator::afisare()
@@ -63,6 +62,7 @@ istream& operator>>(istream& in, Administrator& ax)
     
 }*/
 
+
 istream& operator>>(istream& in, Administrator& ax)
 {
     cout << "\nIntroduceti datele noului administrator: " << endl;
@@ -74,6 +74,7 @@ istream& operator>>(istream& in, Administrator& ax)
     in >> ax.profile_id;
     return in;
 }
+
 
 //Magazin
 class Magazin
@@ -516,8 +517,8 @@ int MV_ComponentePC::actualizare_stoc(int st)
 int main()
 {
     //administrator
-    Administrator* admin1 = new Administrator((char*)"Ioan Andrei", (char*)"ioangg@gmail.com", (int)1);
-    admin1->afisare();
+    Administrator admin1((char*)"Ioan Andrei", (char*)"ioangg@gmail.com", (int)1);
+    admin1.afisare();
 
 
     //magazin virtual
@@ -591,5 +592,6 @@ int main()
     //adaugare administrator nou;
     Administrator admin2;
     cin >> admin2;
+    admin2.afisare();
 }
 
