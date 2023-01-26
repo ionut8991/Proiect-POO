@@ -634,7 +634,7 @@ int main()
 
 
     //magazin sisteme office
-    MV_SistemeOffice* soffice2 = new MV_SistemeOffice((char*)"virtual", (char*)"Sisteme Office", (char*)"Lenovo ThinkPad", (float)8999.99, (int)2, (int)50, (char*)"Nvidia RTX 4090TI", (char*)"Lenovo", (char*)"Ryzen 9");
+    MV_SistemeOffice* soffice2 = new MV_SistemeOffice((char*)"virtual", (char*)"Sisteme Office", (char*)"Mac Mini PC", (float)3499.99, (int)7, (int)64, (char*)"Integrata", (char*)"Apple", (char*)"Apple M2");
     soffice2->afisare();
     soffice2->actualizare_pret(5434);
     soffice2->afisare_pret();
@@ -643,7 +643,7 @@ int main()
 
 
     //magazin TV-uri
-    MV_TV* tv2 = new MV_TV((char*)"virtual", (char*)"Televizoare", (char*)"LG G325253", (float)8999.99, (int)5, (int)40, (char*)"LG", (int)120, (float)34.5);
+    MV_TV* tv2 = new MV_TV((char*)"virtual", (char*)"Televizoare", (char*)"Nei 40NE6900", (float)1028.10, (int)5, (int)30, (char*)"NEI", (int)60, (float)39);
     tv2->afisare();
     tv2->actualizare_pret(5434);
     tv2->afisare_pret();
@@ -651,7 +651,7 @@ int main()
     tv2->get_nrcom();
 
     //magazin telefoane mobile
-    MV_Mobile* mobile2 = new MV_Mobile((char*)"virtual", (char*)"Smartphone-uri", (char*)"LG G325253", (float)8999.99, (int)73, (int)130, (char*)"Android", (char*)"Google", (int)48, (float)6.7);
+    MV_Mobile* mobile2 = new MV_Mobile((char*)"virtual", (char*)"Smartphone-uri", (char*)"Moto G62", (float)999.99, (int)33, (int)130, (char*)"Android", (char*)"Motorola", (int)50, (float)6.5);
     mobile2->afisare();
     mobile2->actualizare_pret(5434);
     mobile2->afisare_pret();
@@ -659,7 +659,7 @@ int main()
     mobile2->get_nrcom();
 
     //magazin Componente PC
-    MV_ComponentePC* comp2 = new MV_ComponentePC((char*)"virtual", (char*)"Componente PC", (char*)"i9 134000", (float)8999.99, (int)6, (int)80, (char*)"Procesor", (char*)"Intel", (char*)"3.5GHZ, 3MB Cache");
+    MV_ComponentePC* comp2 = new MV_ComponentePC((char*)"virtual", (char*)"Componente PC", (char*)"ASUS GeForce RTX® 3060TI TUF GAMING", (float)3499.99, (int)6, (int)80, (char*)"Placa video", (char*)"nVidia", (char*)"8GB GDDR6X, 256-bit");
     comp2->afisare();
     comp2->actualizare_pret(5434);
     comp2->afisare_pret();
@@ -704,7 +704,7 @@ int main()
 
 
     //magazin laptop-uri
-    MV_Laptop* laptop3 = new MV_Laptop((char*)"virtual", (char*)"Laptop-uri", (char*)"Acer Nitro 5", (float)3499.99, (int)6, (int)160, (char*)"Windows 10", (char*)"GeForce GTX™ 1650 4GB", (char*)"Acer", (char*)"i5-11400H");
+    MV_Laptop* laptop3 = new MV_Laptop((char*)"virtual", (char*)"Laptop-uri", (char*)"HP VICTUS 15-fb0026nq", (float)3499.99, (int)9, (int)160, (char*)"Windows 10", (char*)"GeForce GTX 1650 4GB", (char*)"HP", (char*)"AMD Ryzen™ 5 5600H");
     laptop3->afisare();
     laptop3->actualizare_pret(6643);
     laptop3->afisare_pret();
@@ -716,7 +716,7 @@ int main()
 
 
     //magazin sisteme office
-    MV_SistemeOffice* soffice3 = new MV_SistemeOffice((char*)"virtual", (char*)"Sisteme Office", (char*)"Lenovo ThinkPad", (float)8999.99, (int)2, (int)50, (char*)"Nvidia RTX 4090TI", (char*)"Lenovo", (char*)"Ryzen 9");
+    MV_SistemeOffice* soffice3 = new MV_SistemeOffice((char*)"virtual", (char*)"Sisteme Office", (char*)"eXpert GAMING", (float)2569.99, (int)5, (int)74, (char*)"AMD Radeon R9 370", (char*)"EXPERT COMPUTERS", (char*)"i5-9400");
     soffice3->afisare();
     soffice3->actualizare_pret(5434);
     soffice3->afisare_pret();
@@ -725,7 +725,7 @@ int main()
 
 
     //magazin TV-uri
-    MV_TV* tv3 = new MV_TV((char*)"virtual", (char*)"Televizoare", (char*)"LG G325253", (float)8999.99, (int)5, (int)40, (char*)"LG", (int)120, (float)34.5);
+    MV_TV* tv3 = new MV_TV((char*)"virtual", (char*)"Televizoare", (char*)"QLED 43Q60B", (float)1999.99, (int)18, (int)70, (char*)"Samsung", (int)50, (float)42.5);
     tv3->afisare();
     tv3->actualizare_pret(5434);
     tv3->afisare_pret();
@@ -733,7 +733,7 @@ int main()
     tv3->get_nrcom();
 
     //magazin telefoane mobile
-    MV_Mobile* mobile3 = new MV_Mobile((char*)"virtual", (char*)"Smartphone-uri", (char*)"LG G325253", (float)8999.99, (int)73, (int)130, (char*)"Android", (char*)"Google", (int)48, (float)6.7);
+    MV_Mobile* mobile3 = new MV_Mobile((char*)"virtual", (char*)"Smartphone-uri", (char*)"iPhone 14 Pro", (float)6339.99, (int)29, (int)0, (char*)"IOS", (char*)"Apple", (int)48, (float)6.1);
     mobile3->afisare();
     mobile3->actualizare_pret(5434);
     mobile3->afisare_pret();
@@ -741,7 +741,7 @@ int main()
     mobile3->get_nrcom();
 
     //magazin Componente PC
-    MV_ComponentePC* comp3 = new MV_ComponentePC((char*)"virtual", (char*)"Componente PC", (char*)"i9 134000", (float)8999.99, (int)6, (int)80, (char*)"Procesor", (char*)"Intel", (char*)"3.5GHZ, 3MB Cache");
+    MV_ComponentePC* comp3 = new MV_ComponentePC((char*)"virtual", (char*)"Componente PC", (char*)"CV Series™ CV650", (float)377.99, (int)9, (int)53, (char*)"Sursa PC", (char*)"Corsair", (char*)"80 PLUS Bronze, 650W, Dual EPS");
     comp3->afisare();
     comp3->actualizare_pret(5434);
     comp3->afisare_pret();
