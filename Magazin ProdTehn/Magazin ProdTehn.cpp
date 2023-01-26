@@ -516,6 +516,11 @@ int MV_ComponentePC::actualizare_stoc(int st)
 
 int main()
 {
+    cout << "\n_______________________________________________________________________\n" << endl;
+    cout << "Primul set de date: " << endl;
+    cout << "_______________________________________________________________________" << endl;
+
+
     //administrator
     Administrator admin1((char*)"Ioan Andrei", (char*)"ioangg@gmail.com", (int)1);
     admin1.afisare();
@@ -593,5 +598,169 @@ int main()
     Administrator admin2;
     cin >> admin2;
     admin2.afisare();
+
+
+    cout << "\n_______________________________________________________________________\n" << endl;
+    cout << "Al doilea set de date: " << endl;
+    cout << "_______________________________________________________________________" << endl;
+
+    Administrator admin3((char*)"Vasilica Ioan", (char*)"vasion@gmail.com", (int)2);
+    admin3.afisare();
+
+
+    //magazin virtual
+    Magazin_virtual* MV2 = new Magazin_virtual((char*)"virtual");
+    MV2->afisare();
+
+
+
+    //magazin produse electronice
+    MV_ProdElec* MVprod2 = new MV_ProdElec((char*)"virtual", (char*)"Categorie", (char*)"Nume produs", (float)0, (int)0, (int)0);
+    MVprod2->afisare();
+
+
+
+
+    //magazin laptop-uri
+    MV_Laptop* laptop2 = new MV_Laptop((char*)"virtual", (char*)"Laptop-uri", (char*)"Acer Nitro 5", (float)3499.99, (int)6, (int)160, (char*)"Windows 10", (char*)"GeForce GTX™ 1650 4GB", (char*)"Acer", (char*)"i5-11400H");
+    laptop2->afisare();
+    laptop2->actualizare_pret(6643);
+    laptop2->afisare_pret();
+    laptop2->act_nrcom(4);
+    laptop2->get_nrcom();
+    laptop2->verificare_stoc();
+    laptop2->actualizare_stoc(0);
+    laptop2->verificare_stoc();
+
+
+    //magazin sisteme office
+    MV_SistemeOffice* soffice2 = new MV_SistemeOffice((char*)"virtual", (char*)"Sisteme Office", (char*)"Lenovo ThinkPad", (float)8999.99, (int)2, (int)50, (char*)"Nvidia RTX 4090TI", (char*)"Lenovo", (char*)"Ryzen 9");
+    soffice2->afisare();
+    soffice2->actualizare_pret(5434);
+    soffice2->afisare_pret();
+    soffice2->act_nrcom(9);
+    soffice2->get_nrcom();
+
+
+    //magazin TV-uri
+    MV_TV* tv2 = new MV_TV((char*)"virtual", (char*)"Televizoare", (char*)"LG G325253", (float)8999.99, (int)5, (int)40, (char*)"LG", (int)120, (float)34.5);
+    tv2->afisare();
+    tv2->actualizare_pret(5434);
+    tv2->afisare_pret();
+    tv2->act_nrcom(53);
+    tv2->get_nrcom();
+
+    //magazin telefoane mobile
+    MV_Mobile* mobile2 = new MV_Mobile((char*)"virtual", (char*)"Smartphone-uri", (char*)"LG G325253", (float)8999.99, (int)73, (int)130, (char*)"Android", (char*)"Google", (int)48, (float)6.7);
+    mobile2->afisare();
+    mobile2->actualizare_pret(5434);
+    mobile2->afisare_pret();
+    mobile2->act_nrcom(625);
+    mobile2->get_nrcom();
+
+    //magazin Componente PC
+    MV_ComponentePC* comp2 = new MV_ComponentePC((char*)"virtual", (char*)"Componente PC", (char*)"i9 134000", (float)8999.99, (int)6, (int)80, (char*)"Procesor", (char*)"Intel", (char*)"3.5GHZ, 3MB Cache");
+    comp2->afisare();
+    comp2->actualizare_pret(5434);
+    comp2->afisare_pret();
+    comp2->act_nrcom(34);
+    comp2->get_nrcom();
+
+    //verificare total nr de comenzi
+    MV_ProdElec* vecprodus2[] = { laptop2, soffice2, tv2, mobile2, comp2 };
+    int marime2 = sizeof(vecprodus2) / sizeof(vecprodus2[0]);
+    cout << "\nNr total comenzi: " << MVprod1->totalcomenzi(vecprodus2, marime2) << endl;
+
+    //verificare total stock produse din magazine
+    MV_ProdElec* total2 = new MV_ProdElec(*laptop2 + *soffice1 + *comp2 + *mobile2);
+    cout << "\nTotal stock produse magazin: " << total2->totalstock() << endl;
+
+
+    //adaugare administrator nou;
+    Administrator admin4;
+    cin >> admin4;
+    admin4.afisare();
+
+
+    cout << "\n_______________________________________________________________________\n" << endl;
+    cout << "Al doilea set de date: " << endl;
+    cout << "_______________________________________________________________________" << endl;
+
+    Administrator admin5((char*)"Vasilica Ioan", (char*)"vasion@gmail.com", (int)2);
+    admin5.afisare();
+
+
+    //magazin virtual
+    Magazin_virtual* MV3 = new Magazin_virtual((char*)"virtual");
+    MV3->afisare();
+
+
+
+    //magazin produse electronice
+    MV_ProdElec* MVprod3 = new MV_ProdElec((char*)"virtual", (char*)"Categorie", (char*)"Nume produs", (float)0, (int)0, (int)0);
+    MVprod3->afisare();
+
+
+
+
+    //magazin laptop-uri
+    MV_Laptop* laptop3 = new MV_Laptop((char*)"virtual", (char*)"Laptop-uri", (char*)"Acer Nitro 5", (float)3499.99, (int)6, (int)160, (char*)"Windows 10", (char*)"GeForce GTX™ 1650 4GB", (char*)"Acer", (char*)"i5-11400H");
+    laptop3->afisare();
+    laptop3->actualizare_pret(6643);
+    laptop3->afisare_pret();
+    laptop3->act_nrcom(4);
+    laptop3->get_nrcom();
+    laptop3->verificare_stoc();
+    laptop3->actualizare_stoc(0);
+    laptop3->verificare_stoc();
+
+
+    //magazin sisteme office
+    MV_SistemeOffice* soffice3 = new MV_SistemeOffice((char*)"virtual", (char*)"Sisteme Office", (char*)"Lenovo ThinkPad", (float)8999.99, (int)2, (int)50, (char*)"Nvidia RTX 4090TI", (char*)"Lenovo", (char*)"Ryzen 9");
+    soffice3->afisare();
+    soffice3->actualizare_pret(5434);
+    soffice3->afisare_pret();
+    soffice3->act_nrcom(9);
+    soffice3->get_nrcom();
+
+
+    //magazin TV-uri
+    MV_TV* tv3 = new MV_TV((char*)"virtual", (char*)"Televizoare", (char*)"LG G325253", (float)8999.99, (int)5, (int)40, (char*)"LG", (int)120, (float)34.5);
+    tv3->afisare();
+    tv3->actualizare_pret(5434);
+    tv3->afisare_pret();
+    tv3->act_nrcom(53);
+    tv3->get_nrcom();
+
+    //magazin telefoane mobile
+    MV_Mobile* mobile3 = new MV_Mobile((char*)"virtual", (char*)"Smartphone-uri", (char*)"LG G325253", (float)8999.99, (int)73, (int)130, (char*)"Android", (char*)"Google", (int)48, (float)6.7);
+    mobile3->afisare();
+    mobile3->actualizare_pret(5434);
+    mobile3->afisare_pret();
+    mobile3->act_nrcom(625);
+    mobile3->get_nrcom();
+
+    //magazin Componente PC
+    MV_ComponentePC* comp3 = new MV_ComponentePC((char*)"virtual", (char*)"Componente PC", (char*)"i9 134000", (float)8999.99, (int)6, (int)80, (char*)"Procesor", (char*)"Intel", (char*)"3.5GHZ, 3MB Cache");
+    comp3->afisare();
+    comp3->actualizare_pret(5434);
+    comp3->afisare_pret();
+    comp3->act_nrcom(34);
+    comp3->get_nrcom();
+
+    //verificare total nr de comenzi
+    MV_ProdElec* vecprodus3[] = { laptop3, soffice3, tv3, mobile3, comp3 };
+    int marime3 = sizeof(vecprodus3) / sizeof(vecprodus3[0]);
+    cout << "\nNr total comenzi: " << MVprod1->totalcomenzi(vecprodus3, marime3) << endl;
+
+    //verificare total stock produse din magazine
+    MV_ProdElec* total3 = new MV_ProdElec(*laptop3 + *soffice1 + *comp3 + *mobile3);
+    cout << "\nTotal stock produse magazin: " << total3->totalstock() << endl;
+
+
+    //adaugare administrator nou;
+    Administrator admin6;
+    cin >> admin6;
+    admin6.afisare();
 }
 
